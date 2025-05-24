@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const CoffeeCard = ({ coffee }) => {
-  const handleDelete = (id) => {
-    console.log(id);
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
+  const handleDelete = (_id) => {
+    console.log(_id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -17,7 +17,7 @@ const CoffeeCard = ({ coffee }) => {
       console.log(result.isConfirmed);
       if (result.isConfirmed) {
         // start deleting
-        fetch(`http://localhost:5000/coffees/${id}`, {
+        fetch(`http://localhost:5000/coffees/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -29,6 +29,9 @@ const CoffeeCard = ({ coffee }) => {
                 text: "Your Coffee has been deleted.",
                 icon: "success",
               });
+              // remove the coffee from state
+              const remainingCoffees = coffees.filter((cof) => cof._id !== _id);
+              setCoffees(remainingCoffees);
             }
           });
       }
