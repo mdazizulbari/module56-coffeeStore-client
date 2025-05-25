@@ -13,11 +13,14 @@ const UpdateCoffee = () => {
     const updatedCoffee = Object.fromEntries(formData.entries());
     console.log(updatedCoffee);
     // send updated coffee to db
-    fetch(`http://localhost:5000/coffees/${_id}`, {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(updatedCoffee),
-    })
+    fetch(
+      `https://module56-coffee-store-server-two.vercel.app/coffees/${_id}`,
+      {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(updatedCoffee),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {

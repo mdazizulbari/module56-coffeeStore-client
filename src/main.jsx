@@ -20,26 +20,31 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:5000/coffees"),
+        loader: () =>
+          fetch("https://module56-coffee-store-server-two.vercel.app/coffees"),
         Component: Home,
       },
       {
         path: "coffee/:id",
-        loader: () => fetch("http://localhost:5000/coffees"),
+        loader: () =>
+          fetch("https://module56-coffee-store-server-two.vercel.app/coffees"),
         Component: CoffeeDetails,
       },
       { path: "addCoffee", Component: AddCoffee },
       {
         path: "updateCoffee/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/coffees/${params.id}`),
+          fetch(
+            `https://module56-coffee-store-server-two.vercel.app/coffees/${params.id}`
+          ),
         Component: UpdateCoffee,
       },
       { path: "signin", Component: SignIn },
       { path: "signup", Component: SignUp },
       {
         path: "users",
-        loader: () => fetch("http://localhost:5000/users"),
+        loader: () =>
+          fetch("https://module56-coffee-store-server-two.vercel.app/users"),
         Component: Users,
       },
     ],
